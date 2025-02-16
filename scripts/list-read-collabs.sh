@@ -8,12 +8,16 @@
 # Description - This script retrieves and lists all collaborators from the specified repository and organization 
 # that I have access to.
 ############################################################################################################
+if[ -f "config/credentials.env" ] 
+then 
+      source config/credentials.env
+else    
+      echo " Error: config/credentials file not found ! "
+      exit 1
+fi
 
 #Github API URL 
 API_URL="https://api.github.com"
-# Github username and personal access token 
-Username=$username
-Token=$token 
 
 # User and Repository information 
 Owner_name=$1
