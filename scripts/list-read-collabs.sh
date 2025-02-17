@@ -8,13 +8,15 @@
 # Description - This script retrieves and lists all collaborators from the specified repository and organization 
 # that I have access to.
 ############################################################################################################
-if[ -f "config/credentials.env" ] 
+if [ -f "../config/credentials.env" ] 
 then 
-      source config/credentials.env
+      source ../config/credentials.env
 else    
       echo " Error: config/credentials file not found ! "
       exit 1
 fi
+
+
 
 #Github API URL 
 API_URL="https://api.github.com"
@@ -26,7 +28,7 @@ Repo_name=$2
 function Get_Collaborators(){
 local url="${API_URL}/repos/${Owner_name}/${Repo_name}/collaborators"
 # send a get request to github api with authentication 
-curl -s -u "${Username}:${Token}" "${url}"
+curl -s -u "${username}:${token}" "${url}"
 }
 
 function list_collaborators_with_Read_Access(){
