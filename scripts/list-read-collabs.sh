@@ -22,18 +22,18 @@ fi
 API_URL="https://api.github.com"
 
 # User and Repository information 
-Owner_name=$1
+Org_name=$1
 Repo_name=$2
 
 function Get_Collaborators(){
-local url="${API_URL}/repos/${Owner_name}/${Repo_name}/collaborators"
+local url="${API_URL}/repos/${Org_name}/${Repo_name}/collaborators"
 # send a get request to github api with authentication 
 curl -s -u "${username}:${token}" "${url}"
 }
 
 function list_collaborators_with_Read_Access(){
   # fetch all coloborators 
-  collaborators="$(Get_Collaborators |jq -r '.[] | select(.role_name == "read") | .login')"
+  collaborators="$(Get_Collaborators|jq -r '.[] | select(.role_name == "read") |.login')"
   # Display the colobarators with read access 
   if [ -z "${collaborators}" ]
   then 
@@ -47,10 +47,10 @@ function list_collaborators_with_Read_Access(){
 # main script 
 if [ $# -ne 2 ]
 then 
-    echo " Usage : $0 <Owner_name> <Repo_name> "
+    echo " Usage : $0 <Org_name> <Repo_name> "
     echo " please put the args as avobe usage example " 
 else 
-    echo " listing users with read access to ${Owner_name}/${Repo_name}"
+    echo "listing users with read access to ${Org_name}/${Repo_name}"
     list_collaborators_with_Read_Access
 fi
 
