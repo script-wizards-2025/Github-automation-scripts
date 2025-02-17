@@ -24,7 +24,7 @@ Repo_name=$2
 Collaborator=$3
 Action=$4 # "add" / "remove"
 Permissions=$5 # Needs to be passed for "add" action only 
-# read / write / admin / maintain
+# read / write / admin / maintain /Triage
 
 url="${API_URL}/repos/${Org_name}/${Repo_name}/collaborators/${Collaborator}"
 
