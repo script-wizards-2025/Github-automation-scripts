@@ -1,2 +1,3 @@
 config/credentials.env
-config/updates.txt
+scripts/Add-Remove-collabs-Response.txt
+scripts/list-read-collabs-Response.txt
