@@ -2,4 +2,3 @@ config/credentials.env
 config/github_accounts.conf
 scripts/Add-Remove-collabs-Response.txt
 scripts/list-read-collabs-Response.txt
-switch-gituser.sh
