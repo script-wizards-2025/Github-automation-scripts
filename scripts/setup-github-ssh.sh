@@ -2,6 +2,9 @@ Github_username=$1
 email_address=$2
 ssh_alias=$3
 path=$4
+organization=$5  # Set if using organization repo otherwise in place of organization put your Github_username and remove the if condition for organization 
+repo_name=$6
+
 
 
 if [ -f "../config/credentials.env" ] 
@@ -32,10 +35,10 @@ ssh-add ~/.ssh/id_rsa_${Github_username}
 function Add_SSH_Public_key_To_Github()
 {
 url=${API_URL}/user/keys 
-local Public_key=$(cat ~/.ssh/id_rsa_${Github_username}.pub)
+local Public_key=$(cat $HOME/.ssh/id_rsa_${Github_username}.pub)
 # do a POST request 
 # assuming you exported your username and PAT token
-curl -s -u "${username1}:${token2}" -X POST \
+curl -s -u "${username}:${token}" -X POST \
      -H "Accept: application/vnd.github+json" \
      -d "{\"title\":\"${Github_username}_key\",\"key\":\"${Public_key}\"}" \
     "${url}"
@@ -52,7 +55,8 @@ current_dir=$(pwd)
 if [ ${current_dir} == ${path} ]
 then 
        echo "Already inside ${path} , proceeding ...."
-       git remote add ${Github_username} git@github-${ssh_alias}:script-wizards-2025/Github-automation-scripts.git
+       git remote add ${Github_username} git@github-${ssh_alias}:$organization/$repo_name.git
+       # put your repository and org i have put mine .
 
 else    
        echo "Not inside the correct path ,add it yourself  "
@@ -74,9 +78,9 @@ git remote -v
 # main script
 
 # check required parameters 
-if [ -z ${Github_username} ] || [ -z ${email_address} ] || [ -z ${ssh_alias} ] || [ -z ${path} ]
+if [ -z ${Github_username} ] || [ -z ${email_address} ] || [ -z ${ssh_alias} ] || [ -z ${path} ] || [ -z ${organization} ] || [ -z ${repo_name} ] 
 then 
-     echo "Usage : $0 <github_username> <email_address> <ssh_alias> <path>"
+     echo "Usage : $0 <github_username> <email_address> <ssh_alias> <path> <organization> <repo_name>"
      exit 1 
 fi
 
