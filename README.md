@@ -52,8 +52,17 @@ Description: Automates GitHub SSH key setup for multiple accounts. The script ha
 
 Usage:
 ```bash
-./setup-github-ssh.sh <github_username> <email_address> <ssh_alias> <path>
+./setup-github-ssh.sh <github_username> <email_address> <ssh_alias> <path> <organization> <repo_name>
+
+# For organization repository
+./setup-github-ssh.sh devuser dev@email.com work-devuser /path/to/repo myorg myrepo
+
+# For personal repository 
+./setup-github-ssh.sh devuser dev@email.com work-devuser /path/to/repo devuser myrepo
+
 ```
+Note - Remove the if condition for the organization if you don't have a repository under an organization 
+
 ### switch-gituser.sh
 Description: Seamlessly switch between multiple GitHub accounts using SSH configurations. Perfect for managing different GitHub identities (personal, work, organization accounts).
 
