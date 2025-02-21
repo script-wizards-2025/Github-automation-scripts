@@ -7,7 +7,7 @@ if [ -z "${Github_username}" ];then
 fi
 
 # get account details and check whether github user exists or not 
-account_info=$(grep -w ${Github_username} config/github_accounts.conf)
+account_info=$(grep -w ${Github_username} ../config/github_accounts.conf)
 
 if [ -z "${account_info}" ];then
     echo "Error: Account ${Github_username} not found ! "
